@@ -3260,7 +3260,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
         for (l = fromPath.length - 1; l >= keep; l--) {
           exiting = fromPath[l];
           if (exiting.self.onExit) {
-            $injector.invoke(exiting.self.onExit, exiting.self, exiting.locals.globals);
+            $injector.invoke(exiting.self.onExit, exiting.self, exiting.locals ? exiting.locals.globals : {});
           }
           exiting.locals = null;
         }

@@ -1112,7 +1112,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
         for (l = fromPath.length - 1; l >= keep; l--) {
           exiting = fromPath[l];
           if (exiting.self.onExit) {
-            $injector.invoke(exiting.self.onExit, exiting.self, exiting.locals.globals);
+            $injector.invoke(exiting.self.onExit, exiting.self, exiting.locals ? exiting.locals.globals : {});
           }
           exiting.locals = null;
         }
@@ -1122,7 +1122,7 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
           entering = toPath[l];
           entering.locals = toLocals[l];
           if (entering.self.onEnter) {
-            $injector.invoke(entering.self.onEnter, entering.self, entering.locals.globals);
+            $injector.invoke(entering.self.onEnter, entering.self, entering.locals ? entering.locals.globals : {});
           }
         }
 
